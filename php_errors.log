@@ -1,0 +1,20 @@
+[01-Dec-2017 17:35:02 UTC] PHP Warning:  include_once(../models/Cell.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/ultimate-tic-tac-toe/startGame.php on line 4
+[01-Dec-2017 17:35:02 UTC] PHP Stack trace:
+[01-Dec-2017 17:35:02 UTC] PHP   1. {main}() /home/ubuntu/workspace/ultimate-tic-tac-toe/views/game.php:0
+[01-Dec-2017 17:35:02 UTC] PHP   2. include() /home/ubuntu/workspace/ultimate-tic-tac-toe/views/game.php:1
+[01-Dec-2017 17:35:02 UTC] PHP   3. include_once() /home/ubuntu/workspace/ultimate-tic-tac-toe/utils/printBoard.php:2
+[01-Dec-2017 17:35:02 UTC] PHP Warning:  include_once(): Failed opening '../models/Cell.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/ultimate-tic-tac-toe/startGame.php on line 4
+[01-Dec-2017 17:35:02 UTC] PHP Stack trace:
+[01-Dec-2017 17:35:02 UTC] PHP   1. {main}() /home/ubuntu/workspace/ultimate-tic-tac-toe/views/game.php:0
+[01-Dec-2017 17:35:02 UTC] PHP   2. include() /home/ubuntu/workspace/ultimate-tic-tac-toe/views/game.php:1
+[01-Dec-2017 17:35:02 UTC] PHP   3. include_once() /home/ubuntu/workspace/ultimate-tic-tac-toe/utils/printBoard.php:2
+[01-Dec-2017 17:35:56 UTC] PHP Warning:  include_once(../models/Cell.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/ultimate-tic-tac-toe/startGame.php on line 4
+[01-Dec-2017 17:35:56 UTC] PHP Stack trace:
+[01-Dec-2017 17:35:56 UTC] PHP   1. {main}() /home/ubuntu/workspace/ultimate-tic-tac-toe/views/game.php:0
+[01-Dec-2017 17:35:56 UTC] PHP   2. include() /home/ubuntu/workspace/ultimate-tic-tac-toe/views/game.php:1
+[01-Dec-2017 17:35:56 UTC] PHP   3. include_once() /home/ubuntu/workspace/ultimate-tic-tac-toe/utils/printBoard.php:2
+[01-Dec-2017 17:35:56 UTC] PHP Warning:  include_once(): Failed opening '../models/Cell.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/ultimate-tic-tac-toe/startGame.php on line 4
+[01-Dec-2017 17:35:56 UTC] PHP Stack trace:
+[01-Dec-2017 17:35:56 UTC] PHP   1. {main}() /home/ubuntu/workspace/ultimate-tic-tac-toe/views/game.php:0
+[01-Dec-2017 17:35:56 UTC] PHP   2. include() /home/ubuntu/workspace/ultimate-tic-tac-toe/views/game.php:1
+[01-Dec-2017 17:35:56 UTC] PHP   3. include_once() /home/ubuntu/workspace/ultimate-tic-tac-toe/utils/printBoard.php:2

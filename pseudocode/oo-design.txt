@@ -1,0 +1,42 @@
+- cells as objects
+    - state: /* "", "X", or "O" */
+    - location -> array(
+        row => /* number 1-3 */
+        col => /* number 1-3 */
+    )
+        - generated inside Board to loop over numbers
+    - behaviors...
+        - change state
+            - state only changes if not already set
+            - big board cells only change state if win condition met for small board
+                - can check parent properties?
+                - need to have separate property that identifies cell as small or big?
+        - get reference to coordinates?
+            - only necessary if small board to get the big cell location of the next move
+- board is a collection of 9 cells
+    - object with 9 different cell objects as properties
+    - smallBoard -> /* true/false */
+    - win condition
+        - 9 win conditions: 3 horizontal, 3 vertical, 2 diagonal,  1 "whoever filled more squares"
+            - (good reason to include row/col number in location to make win conditions cleaner)
+            - when cell changes state, update p1/p2 counters
+                - p1 -> array(
+                    counters => array(
+                        row1 => /* counter */,
+                        row2 => /* counter */,
+                        row3 => /* counter */,
+                        col1 => /* counter */,
+                        col2 => /* counter */,
+                        col3 => /* counter */,
+                        dia1 => /* counter */,
+                        dia2 => /* counter */,
+                    ),
+                    totalsquares => /* counter */
+                )
+                - win when anything in counters === 3
+                - need some way to recognize when board is full then determine who had more squares...
+        - when win condition is met, different behavior if smallBoard is true or false
+            - if smallBoard
+                - change state of big board cell
+            - if !smallBoard
+                - end game

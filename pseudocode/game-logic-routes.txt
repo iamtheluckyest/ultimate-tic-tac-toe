@@ -1,0 +1,6 @@
+- CLIENT: Button is clicked, jQuery takes coord and makes POST request.
+    - SERVER: 
+        - updates $cell["coord"]->state; 
+        - evaluates for win; 
+        - returns response with state of small cell(?), state of large cell (win: boolean), state of whole board (win: boolean)
+    - CLIENT: if cell is not "", if large cell win is true, or if large board win is true, disable the appropriate things

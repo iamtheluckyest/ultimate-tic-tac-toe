@@ -1,0 +1,27 @@
+h1 {
+    color: #5a5a5a;
+}
+.border-help {
+    border: 2px solid #5a5a5a;
+}
+
+.smallRow {
+    height: 50px;
+}
+
+label {
+    width:33.33% !important;
+}
+
+[type="radio"]:not(:checked)+label:before, 
+[type="radio"]:not(:checked)+label:after, 
+[type="radio"]:checked+label:before, 
+[type="radio"]:checked+label:after {
+    width:100%;
+    height:50px;
+    margin:0px;
+    border: 2px solid #5a5a5a;
+    border-radius: 0;
+}
+
+
