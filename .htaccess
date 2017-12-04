@@ -4,4 +4,4 @@
 
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ ultimate-tic-tac-toe/index.php/$1 [L]
+    RewriteRule ^(.*)$ index.php/$1 [L]

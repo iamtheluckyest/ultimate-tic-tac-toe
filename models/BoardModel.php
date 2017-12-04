@@ -20,7 +20,8 @@ class BoardModel {
     }
     
     public function setCellState($index, $newState) {
-        if ($this->cells[$index] ==="" && ($newState === "X" || $newState === "O")) {
+        
+        if ($this->cells[$index] ==="" && ($newState === 0 || $newState === 1)) {
             $this->cells[$index] = $newState;
         }
     }
