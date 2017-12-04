@@ -19,6 +19,18 @@ class BoardModel {
         return $this->cells;
     }
     
+    public function getWholeBoard() {
+        // if($this->smallBoard) {
+        //     $this->getCells();
+        // } else {
+            $wholeBoard = array();
+            foreach($this->getCells() as $key => $value) {
+                $wholeBoard[$key] = $this->getCells()[$key]->getCells();
+            }
+            return $wholeBoard;
+        // }
+    }
+    
     public function setCellState($index, $newState) {
         
         if ($this->cells[$index] ==="" && ($newState === 0 || $newState === 1)) {

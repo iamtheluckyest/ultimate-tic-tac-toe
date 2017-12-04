@@ -11,7 +11,7 @@ $(document).on("click", "input", function(event){
             "player": currentPlayer
         })
     }).then(function(result){
-        console.log(result)
+        console.log(result);
         if(currentPlayer) {
             currentPlayer = 0;
         } else {

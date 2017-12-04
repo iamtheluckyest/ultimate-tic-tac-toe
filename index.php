@@ -1,9 +1,12 @@
 <?php
+    
+    session_start();
     include_once 'models/Request.php';
-    include_once 'startGame.php';
-    include_once 'utils/printBoard.php';
+    include 'startGame.php';
+    include 'utils/printBoard.php';
     
     spl_autoload_register('apiAutoload');
+    
     
     function apiAutoload($classname)
     {
@@ -23,13 +26,14 @@
     
     $request = new Request();
     
+    //i.e. BoardController
     $controller_name = ucfirst($request->url_elements[1]) . 'Controller';
+    
     if (class_exists($controller_name)) {
         $controller = new $controller_name();
         $action_name = strtolower($request->verb) . 'Action';
-        $gameBoard = $controller->$action_name($request, $gameBoard);
-        // HOW TO KEEP $gameBoard IN SCOPE, SO THAT I CAN CONTINUALLY OVERRIDE VARIABLES?
-        print_r($gameBoard);
+        $response = $controller->$action_name($request, $_SESSION["gameBoard"]);
+        // print_r($response);
     }
     
 ?>
