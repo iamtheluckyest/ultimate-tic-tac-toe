@@ -28,7 +28,7 @@
         $controller = new $controller_name();
         $action_name = strtolower($verb) . 'Action';
         $result = $controller->$action_name($gameBoard);
-        print($result);
+        print_r($result);
     }
     
 ?>

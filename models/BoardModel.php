@@ -1,6 +1,6 @@
 <?php
 
-class Board {
+class BoardModel {
     
     private $cells;
     
@@ -29,7 +29,7 @@ class Board {
         $cells = array();
     
         for($i = 1; $i <= 9; $i++) {
-            array_push($cells, $this->smallBoard ? "" : new Board(true));
+            array_push($cells, $this->smallBoard ? "" : new BoardModel(true));
         }
         return $cells;
     }

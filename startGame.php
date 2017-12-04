@@ -1,7 +1,7 @@
 <?php
 
-    include_once 'models/Board.php';
+    include_once 'models/BoardModel.php';
 
-    $gameBoard = new Board(false);
+    $gameBoard = new BoardModel(false);
     
 ?>

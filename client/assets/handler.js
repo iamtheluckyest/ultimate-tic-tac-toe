@@ -1,7 +1,5 @@
-$(document).on("click", function(event){
-    console.log(event.target)
+$(document).on("click", "input", function(event){
+    var coord = $(this).attr("id");
+    console.log(coord);
 })
 
-$("input").click(function () {
-    console.log($(this).id)
-})
