@@ -35,6 +35,10 @@ class BoardModel {
         
         if ($this->cells[$index] ==="" && ($newState === 0 || $newState === 1)) {
             $this->cells[$index] = $newState;
+            return true;
+        }
+        else {
+            return false;
         }
     }
     

@@ -1,9 +1,8 @@
 <?php
     
-    session_start();
     include_once 'models/Request.php';
-    include 'startGame.php';
-    include 'utils/printBoard.php';
+    include_once 'startGame.php';
+    include_once 'utils/printBoard.php';
     
     spl_autoload_register('apiAutoload');
     
@@ -33,7 +32,7 @@
         $controller = new $controller_name();
         $action_name = strtolower($request->verb) . 'Action';
         $response = $controller->$action_name($request, $_SESSION["gameBoard"]);
-        // print_r($response);
+        print_r($response);
     }
     
 ?>

@@ -1,0 +1,4 @@
+SESSIONS
+    - Stored on the server?
+    - "One thing that should be understood is that if you are creating a RESTfull service using sessions is by nature NOT a RESTfull process."
+    - How do you get/pass/store the session id?

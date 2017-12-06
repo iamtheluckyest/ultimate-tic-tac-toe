@@ -8,15 +8,19 @@
         }
     
         public function postAction($request, $gameBoard) {
-            print_r($_SESSION["gameBoard"]->getWholeBoard());
             $data = $request->parameters;
             $player = $data['player'];
             $largeCoord = $data['coord'][0];
             $smallCoord = $data['coord'][1];
-            $gameBoard->getCells()[$largeCoord]->setCellState($smallCoord, $player);
+            $success = $gameBoard->getCells()[$largeCoord]->setCellState($smallCoord, $player);
             $_SESSION["gameBoard"] = $gameBoard;
-            print_r($_SESSION["gameBoard"]->getWholeBoard());
-            // return $gameBoard->getWholeBoard();
+            
+            if ($success) {
+                return json_encode($gameBoard->getWholeBoard());
+            } else {
+                return null;
+            }
+                
         }
     }
 

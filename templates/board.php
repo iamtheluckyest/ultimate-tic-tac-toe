@@ -20,6 +20,9 @@
             <center>
                 <h1>Tic Tac Toe</h1>
             </center>
+            <center>
+                <div class="waves-effect waves-light btn">Restart</div>
+            </center>
             <form action="#">
                 <?php
                     printBoard($gameBoard, "");
