@@ -40,3 +40,4 @@
                 - change state of big board cell
             - if !smallBoard
                 - end game
+    - Need to be able to disable a board. 

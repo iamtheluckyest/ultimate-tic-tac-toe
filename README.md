@@ -11,4 +11,4 @@ Entry point: /board
 - [x] print board to view
 - [ ] routing
 - [ ] JS handle clicks; send info to server; change DOM based on response
-- [ ] game logic
+- [ ] game logic 
