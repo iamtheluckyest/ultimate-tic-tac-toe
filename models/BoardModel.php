@@ -1,61 +1,40 @@
 <?php
 
+include_once 'WinsModel.php';
+
 class BoardModel {
     
-    private $cells;
+    protected $boardWinner;
     
-    private $smallBoard;
+    protected $winConditions;
     
-    private $active;
+    protected $cells;
     
-    public function __construct ($smallBoard) {
-        $this->smallBoard = $smallBoard;
+    public function __construct () {
         $this->cells = $this->generateCells();
-        $this->active = true;
-    }
-    
-    public function isSmallBoard() {
-        return $this->smallBoard;
+        $this->winConditions = array(new WinsModel, new WinsModel);
     }
     
     public function getCells() {
         return $this->cells;
     }
     
-    // Returns an array that represents the whole board
-    public function getWholeBoard() {
-        if($this->smallBoard) {
-            $this->getCells();
-        } else {
-            $wholeBoard = array();
-            foreach($this->getCells() as $key => $value) {
-                $wholeBoard[$key] = $this->getCells()[$key]->getCells();
-            }
-            return $wholeBoard;
-        }
+    // template method
+    protected function generateCell() {
+        throw new Exception("generateCell called in abstract base class");
     }
     
-    public function setCellState($index, $newState) {
-        if ($this->cells[$index] ==="" && ($newState === 0 || $newState === 1)) {
-            $this->cells[$index] = $newState;
-            return true;
-        }
-        else {
-            return false;
-        }
+    protected function setCellState() {
+        throw new Exception("setCellState called in abstract base class");
     }
     
     private function generateCells() {
         $cells = array();
         for($i = 1; $i <= 9; $i++) {
-            array_push($cells, $this->smallBoard ? "" : new BoardModel(true));
+            array_push($cells, $this->generateCell());
         }
         return $cells;
     }
-    
-    // Need to create a method that disables portions of the board.
 }
 
-
 ?>
-

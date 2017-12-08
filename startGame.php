@@ -1,11 +1,9 @@
 <?php
 
-    include 'models/BoardModel.php';
+    include 'models/LargeBoardModel.php';
     
     session_start();
     if (!isset($_SESSION['gameBoard'])) {
-      $_SESSION["gameBoard"] = new BoardModel(false);
+      $_SESSION["gameBoard"] = new LargeBoardModel();
     }
-    
-    
 ?>

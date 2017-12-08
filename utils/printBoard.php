@@ -2,9 +2,10 @@
     
     function printBoard($board, $parentCellNumber) {
         
+        // print_r($board);
         
         // If we are on a smallBoard, we want to print the inputs
-        if( $board->isSmallBoard() ){
+        if( get_class($board) === "SmallBoardModel" ){
             foreach($board->getCells() as $key => $value){
                 
                 if ($key===0 || $key===3 || $key===6) {
@@ -34,7 +35,7 @@
                     
                     // New small board
                     printBoard($board->getCells()[$key], $key);
-                    
+
                     // Close large col
                     print("</div>");
                     print("</div>");

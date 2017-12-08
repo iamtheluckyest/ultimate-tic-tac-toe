@@ -2,6 +2,7 @@ h1 {
     color: #5a5a5a;
 }
 
+/* adds border around each large cell to make all borders appear the same width */
 .border-help {
     border: 2px solid #5a5a5a;
 }

@@ -31,8 +31,6 @@ $("input").click(function(event){
             if (response[3]) {
                 $("label[for='" + coord + "']").addClass("p" + currentPlayer);
                 
-                
-                
                 // Disable radio button
                 $(that).attr("disabled", "")
                 $("label").toggleClass("p1-turn")
