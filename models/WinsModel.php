@@ -21,6 +21,7 @@ class WinsModel {
     
     public function checkForWin($coord){
         $this->total++;
+        $coord = (int)$coord;
         
         if ($coord === 0 || $coord === 1 || $coord === 2) {
             $this->counters["row1"]++;
@@ -48,9 +49,9 @@ class WinsModel {
         }
         
         foreach($this->counters as $key => $value) {
-          if ($value===3) {
-              return $true;
-          }
+            if ($value===3) {
+                return $true;
+            }
         }
         unset($value, $key);
         return false;

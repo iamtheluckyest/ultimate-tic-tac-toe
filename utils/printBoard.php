@@ -14,7 +14,8 @@
                 }
                 // Input square
                 $coord = $parentCellNumber . $key;
-                print("<input name='".$parentCellNumber."' type='radio' id='".$coord."'><label for='".$coord."'". ( $value !=="" ? "class='p".$value."'" : "") . "></label>");
+                print("<input name='gameboard' type='radio' id='" . $coord . "' " . ( $value !=="" ? "disabled='disabled'" : "") . ">");
+                print("<label for='" . $coord . "'" . ( $value !=="" ? "class='p" . $value . "'" : "") . "></label>");
                 if ($key===2 || $key===5 || $key===8) {
                     // Close small row
                     print("</div>");

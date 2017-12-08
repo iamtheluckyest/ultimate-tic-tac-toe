@@ -26,9 +26,11 @@ $("input").click(function(event){
                 "player": currentPlayer
             })
         }).then(function(response){
-            console.log(response)
+            
             // If response is successful, swap player, update button class
             if (response[3]) {
+                console.log(response)
+                // console.log(JSON.parse(response));
                 $("label[for='" + coord + "']").addClass("p" + currentPlayer);
                 
                 // Disable radio button
@@ -45,6 +47,7 @@ $("input").click(function(event){
             // If response fails
             // This is only a safeguard as disabling the input will not allow you to change a cell that's already been clicked.
             else {
+                console.log(response)
                 console.log("cell has been chosen already");
             }
             

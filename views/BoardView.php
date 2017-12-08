@@ -12,8 +12,7 @@
                     if (file_exists($file)) {
                         $this->render = $file;
                     } else {
-                        echo $file;
-                        // throw new customException('Template ' . $template . ' not found!');
+                        throw new Exception('Template ' . $template . ' at location ' . $file . ' not found!');
                     }
                 }
                 catch (customException $e) {

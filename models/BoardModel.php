@@ -4,7 +4,7 @@ include_once 'WinsModel.php';
 
 class BoardModel {
     
-    protected $boardWinner;
+    protected $winner;
     
     protected $winConditions;
     
