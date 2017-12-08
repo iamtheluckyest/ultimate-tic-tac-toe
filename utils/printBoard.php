@@ -32,7 +32,7 @@
                 }
                     // New large col
                     print("<div class='col s4 center largeCell'>");
-                    print("<div class='border-help'>");
+                    print("<div class='border-help' id='cell" . $key . "'>");
                     
                     // New small board
                     printBoard($board->getCells()[$key], $key);

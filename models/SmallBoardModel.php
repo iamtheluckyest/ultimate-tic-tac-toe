@@ -23,6 +23,7 @@ class SmallBoardModel extends BoardModel {
         }
     }
     
+    // Sets cell content to "" when model is created.
     protected function generateCell() {
         return "";
     }

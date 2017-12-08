@@ -7,6 +7,10 @@ h1 {
     border: 2px solid #5a5a5a;
 }
 
+.border-help.inactive {
+    border: 2px solid #acacac;
+}
+
 .smallRow {
     height: 50px;
 }
@@ -14,6 +18,8 @@ h1 {
 label {
     width:33.33% !important;
 }
+
+
 
 /* small cells base styles */ 
 [type="radio"]:not(:checked)+label:before, 
@@ -48,7 +54,7 @@ label {
 [type="radio"]:checked+.p0:before, 
 [type="radio"]:checked+.p0:after {
     background-color: #26a69a !important;
-    border: 2px solid #5a5a5a !important
+    border: 2px solid #5a5a5a;
 }
 
 /* small cells chosen by p1 */ 
@@ -57,7 +63,16 @@ label {
 [type="radio"]:checked+.p1:before, 
 [type="radio"]:checked+.p1:after {
     background-color: #ee6e73 !important;
-    border: 2px solid #5a5a5a !important
+    border: 2px solid #5a5a5a;
+}
+
+/*[type="radio"]:disabled:not(:checked)+.p0:before, */
+/*[type="radio"]:disabled:checked+.p0:before,*/
+/*[type="radio"]:disabled:not(:checked)+.p1:before, */
+/*[type="radio"]:disabled:checked+.p1:before, */
+[type="radio"]:disabled:not(:checked)+label:before, 
+[type="radio"]:disabled:checked+label:before {
+    border: 2px solid #acacac !important;
 }
     
 .restart-btn {

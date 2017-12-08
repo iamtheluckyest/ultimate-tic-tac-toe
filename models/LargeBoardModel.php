@@ -44,6 +44,7 @@ class LargeBoardModel extends BoardModel {
         }
     }
     
+    // Sets cell content to object of smallBoardModel class when model is created.
     protected function generateCell() {
         return new SmallBoardModel();
     }
@@ -55,7 +56,7 @@ class LargeBoardModel extends BoardModel {
         if ($this->cells[$coord]->hasWinner()) {  
             // activate all that aren't won
             $deactivate = false;
-        }   
+        }  
         
         // Loop through smallBoards and activate or deactivate as appropriate
         $this->cells[$coord]->setActiveState($deactivate);
