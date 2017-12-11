@@ -42,8 +42,7 @@ class SmallBoardModel extends BoardModel {
     
     public function checkforWin($coord, $player) {
         // if a 3-in-a-row row, col, or diagonal has been achieved, assign winner
-        if ($this->winConditions[$player]->checkforWin($coord, $player)){
-            gettype($player);
+        if ($this->winConditions[$player]->checkforWin($coord)) {
             $this->assignWinner($player);
         }
         // if the board has no cells left, assign winner

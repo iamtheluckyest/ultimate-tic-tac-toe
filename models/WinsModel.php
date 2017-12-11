@@ -49,8 +49,9 @@ class WinsModel {
         }
         
         foreach($this->counters as $key => $value) {
-            if ($value===3) {
-                return $true;
+            if ($value === 3) {
+                unset($value, $key);
+                return true;
             }
         }
         unset($value, $key);

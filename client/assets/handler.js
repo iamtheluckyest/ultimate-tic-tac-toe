@@ -24,9 +24,10 @@ $("input").click(function(event){
                 "player": currentPlayer
             })
         }).then(function(res){
-            
+            // console.log(res)
             // If response is successful, swap player, update button class
             if (res[3]) {
+                // console.log(res)
                 console.log(JSON.parse(res));
                 $("label[for='" + coord + "'], #" + coord).addClass("p" + currentPlayer);
                 res = JSON.parse(res)
