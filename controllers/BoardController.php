@@ -8,13 +8,17 @@
         }
     
         public function postAction($request, $gameBoard) {
-            $data = $request->parameters;
+            $coord = $request->parameters['coord'];
+            $player = $request->parameters['player'];
             
-            $success = $gameBoard->setCellState($data['coord'], $data['player']);
+            $success = $gameBoard->setCellState($coord, $player);
             $_SESSION["gameBoard"] = $gameBoard;
                      
             if ($success) {
-                return json_encode($gameBoard->getWholeBoard());
+                // For sending back html code
+                return printBoard($gameBoard, "");
+                // For sending back just data
+                // return json_encode($gameBoard->getWholeBoard());
             } else {
                 return null;
             }

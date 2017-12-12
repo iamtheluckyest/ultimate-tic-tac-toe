@@ -2,9 +2,6 @@
 include_once 'BoardModel.php';
 include_once 'SmallBoardModel.php';
 
-// TODO:
-// Surely I can clean up this mess of methods... I suspect many could be combined
-
 class LargeBoardModel extends BoardModel {
     
     // Returns an array that represents the whole board, with active state
@@ -14,34 +11,51 @@ class LargeBoardModel extends BoardModel {
             $wholeBoard[$key] = array(
                 "content" => $this->getCells()[$key]->getCells(), 
                 "active" => $this->getCells()[$key]->getActiveState(),
-                "winner" => $this->getCells()[$key]->getWinner()
+                "winner" => $this->getCells()[$key]->getWinner(),
+                "stillActive" => $this->active,
+                "player" => $this->player
             );
         }
         return $wholeBoard;
     }
     
     public function setCellState($coord, $player){
-        // Rename for easy reference
-        $currentSmallBoard = $this->cells[$coord[0]];
-        // Set the new value of the cell. Fails if cell has already been set
-        $cellStateSetSuccess = $currentSmallBoard->setCellState($coord[1], $player);
-        // If cell is successfully set, check for win on small board
-        if ($cellStateSetSuccess){
-            $smallBoardWon = $currentSmallBoard->checkForWin($coord[1], $player);
-            // If a small board has been won, check for win on large board
-            if ($smallBoardWon) {
-                // TODO:
-                // Check for whole board win
-                // If won, end game.
-            } else {
-                // Activates large cell whose coord matches the coord of the small cell just played
-                $this->activateBoard($coord[1]);
-                return true;
+        // Checks that game is still going
+        if($this->getActiveState()){
+            // Rename for easy reference
+            $currentSmallBoard = $this->cells[$coord[0]];
+            // Set the new value of the cell. Fails if cell has already been set
+            $cellStateSetSuccess = $currentSmallBoard->setCellState($coord[1], $player);
+            // If cell is successfully set, check for win on small board
+            if ($cellStateSetSuccess){
+                // TODO: toggle current player; then edit all methods that take $player as a parameter
+                $smallBoardWon = $currentSmallBoard->checkForWin($coord[1], $player);
+                // If a small board has been won, check for win on large board
+                if ($smallBoardWon) {
+                    // Check for whole board win
+                    $largeBoardWon = $this->checkForWin($coord[0], $player);
+                    // If won, end game.
+                    if($largeBoardWon) {
+                        $this->setActiveState(false);
+                        for($i = 0; $i < sizeof($this->cells); $i++) {
+                            $this->cells[$i]->setActiveState(false);
+                        }
+                    } else {
+                        // Activates large cell whose coord matches the coord of the small cell just played
+                        $this->activateBoard($coord[1]);
+                        return true;       
+                    }
+                } else {
+                    // Activates large cell whose coord matches the coord of the small cell just played
+                    $this->activateBoard($coord[1]);
+                    return true;       
+                }
             }
-        }
-        else {
-            return false;
-        }
+            // If something caused set cell to fail, i.e. cell has already been set
+            else return false;
+        } 
+        // If game is over
+        else return false;
     }
     
     // Sets cell content to object of smallBoardModel class when model is created.

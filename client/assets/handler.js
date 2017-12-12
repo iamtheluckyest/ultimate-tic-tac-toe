@@ -4,7 +4,7 @@
 var currentPlayer = 0;
 var click;
 
-$("input").click(function(event){
+$(document).on("click", "input", function(event){
     // Ids of inputs equal their coordinates. First number is large cell array index, second number is small cell array index.
     var coord = $(this).attr("id");
 
@@ -14,6 +14,7 @@ $("input").click(function(event){
     // Holds coord so that user can click around as they consider their choices, then click again to confirm.
     if (click !== coord) {
         click = coord;
+        console.log(click)
     } else {
         $.ajax({
             method: "POST" ,
@@ -24,9 +25,30 @@ $("input").click(function(event){
                 "player": currentPlayer
             })
         }).then(function(res){
-            // console.log(res)
+            /*---------------------------------------------------
+            For the version that sends back html
+            ---------------------------------------------------*/
+            if (res) {
+                $("form").html(res);
+                $("label").toggleClass("p1-turn")
+                if(!currentPlayer) {
+                    currentPlayer = 1;
+                } else {
+                    currentPlayer = 0;
+                }
+                
+            } else {
+                console.log(res)
+                console.log("select a different cell")
+            }
+            
+            /*---------------------------------------------------
+            For the version that sends back data
+            ---------------------------------------------------*/
+            /*
+            console.log(res)
             // If response is successful, swap player, update button class
-            if (res[3]) {
+            if (res) {
                 // console.log(res)
                 console.log(JSON.parse(res));
                 $("label[for='" + coord + "'], #" + coord).addClass("p" + currentPlayer);
@@ -58,6 +80,7 @@ $("input").click(function(event){
                 console.log(res)
                 console.log("cell has been chosen already");
             }
+            */
             
         });
     };

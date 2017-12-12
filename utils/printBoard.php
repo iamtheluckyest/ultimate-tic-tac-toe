@@ -8,6 +8,7 @@
                 
                 $disabled = "";
                 $playerClass = "";
+                // TODO: add something to recognize the player's turn and add class "p1-turn" to label if it is p1's turn
                 if ($value === 0 || $value === 1){
                     $playerClass = "class='p" . $value . "'";
                 }
