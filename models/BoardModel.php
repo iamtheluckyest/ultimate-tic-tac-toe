@@ -29,13 +29,9 @@ class BoardModel {
        return $this->winner; 
     }
     
-    // TODO: make sure that all currentPlayer properties get toggled at the same time to avoid redundancy
-    protected function togglePlayer() {
-        if($this->currentPlayer === 0) {
-            $this->currentPlayer = 1;
-        } else {
-            $this->currentPlayer = 0;
-        }
+    // template method
+    public function togglePlayer() {
+        throw new Exception("togglePlayer called in abstract base class");
     }
     
     public function getCurrentPlayer() {
@@ -59,14 +55,15 @@ class BoardModel {
         throw new Exception("generateCell called in abstract base class");
     }
     
+    // template method
     protected function setCellState() {
         throw new Exception("setCellState called in abstract base class");
     }
     
-    protected function checkforWin($coord, $player) {
+    protected function checkforWin($coord) {
         // if a 3-in-a-row row, col, or diagonal has been achieved, assign winner
-        if ($this->winConditions[$player]->checkforWin($coord)) {
-            return $this->assignWinner($player);
+        if ($this->winConditions[$this->currentPlayer]->checkforWin($coord)) {
+            return $this->assignWinner($this->currentPlayer);
         }
         // if the board has no cells left, assign winner
         else if ( ($this->winConditions[0]->getTotal() + $this->winConditions[1]->getTotal()) === sizeof($this->cells) ) {

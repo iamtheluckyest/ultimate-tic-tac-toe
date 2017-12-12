@@ -1,45 +1,34 @@
 /* global $ */
 
-// **Need to get current player from server, or will be p0's turn every time screen is refreshed**
-var currentPlayer = 0;
 var click;
 
 $(document).on("click", "input", function(event){
     // Ids of inputs equal their coordinates. First number is large cell array index, second number is small cell array index.
     var coord = $(this).attr("id");
-
-    // Save this so that we can access from inside the ajax callback
-    var that = this;
     
     // Holds coord so that user can click around as they consider their choices, then click again to confirm.
     if (click !== coord) {
         click = coord;
-        console.log(click)
     } else {
         $.ajax({
             method: "POST" ,
             url: "board",
             contentType: 'application/json',
             data: JSON.stringify({
-                "coord": coord,
-                "player": currentPlayer
+                "coord": coord
             })
         }).then(function(res){
             /*---------------------------------------------------
             For the version that sends back html
             ---------------------------------------------------*/
             if (res) {
+                // console.log(JSON.parse(res));
+                // console.log(res)
                 $("form").html(res);
-                $("label").toggleClass("p1-turn")
-                if(!currentPlayer) {
-                    currentPlayer = 1;
-                } else {
-                    currentPlayer = 0;
-                }
                 
             } else {
-                console.log(res)
-                console.log("select a different cell")
+                console.log(res);
+                console.log("select a different cell");
             }
             
             /*---------------------------------------------------
@@ -83,17 +72,16 @@ $(document).on("click", "input", function(event){
             */
             
         });
-    };
+    }
 });
 
 $(".btn").click(function(event){
-    var coord = $(this).attr("id");
     $.ajax({
         method: "PUT" ,
         url: "reset",
         contentType: 'application/json'
     }).then(function(result){
         console.log(result);
-        currentPlayer = 0;
+        window.location.reload();
     });
 })

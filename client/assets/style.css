@@ -11,15 +11,21 @@ h1 {
     border: 2px solid #acacac;
 }
 
+.border-help.hasWinner0 {
+    border: 2px solid #26a69a;
+}
+
+.border-help.hasWinner1 {
+    border: 2px solid #ee6e73;
+}
+
 .smallRow {
     height: 50px;
 }
 
 label {
-    width:33.33% !important;
+    width: 33.33% !important;
 }
-
-
 
 /* small cells base styles */ 
 [type="radio"]:not(:checked)+label:before, 
@@ -66,13 +72,19 @@ label {
     border: 2px solid #5a5a5a;
 }
 
-/*[type="radio"]:disabled:not(:checked)+.p0:before, */
-/*[type="radio"]:disabled:checked+.p0:before,*/
-/*[type="radio"]:disabled:not(:checked)+.p1:before, */
-/*[type="radio"]:disabled:checked+.p1:before, */
 [type="radio"]:disabled:not(:checked)+label:before, 
 [type="radio"]:disabled:checked+label:before {
-    border: 2px solid #acacac !important;
+    border: 2px solid #acacac;
+}
+
+.hasWinner0 [type="radio"]:disabled:not(:checked)+label:before, 
+[type="radio"]:disabled:checked+label:before {
+    border: 2px solid #26a69a;
+}
+
+.hasWinner1 [type="radio"]:disabled:not(:checked)+label:before, 
+[type="radio"]:disabled:checked+label:before {
+    border: 2px solid #ee6e73;
 }
     
 .restart-btn {

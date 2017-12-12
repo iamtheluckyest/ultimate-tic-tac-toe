@@ -1,6 +1,10 @@
 <?php
     
     function printBoard($board, $parentCellNumber, $inactive = "") {
+        $p1Turn = "";
+        if($board->getCurrentPlayer()) {
+            $turnClass = "class='p1-turn'";
+        }
         
         // If we are on a smallBoard, we want to print the inputs
         if( get_class($board) === "SmallBoardModel" ){
@@ -8,9 +12,15 @@
                 
                 $disabled = "";
                 $playerClass = "";
+                
                 // TODO: add something to recognize the player's turn and add class "p1-turn" to label if it is p1's turn
                 if ($value === 0 || $value === 1){
-                    $playerClass = "class='p" . $value . "'";
+                    // TODO: Need to add a player class if there is a value
+                    // Problem: class already exists in $turnClass
+                    // but if we manipulate $turnClass, it will stay manipulated next time through the loop
+                    $labelClass = "class='p" . $value . "'";
+                } else {
+                    $labelClass = $turnClass;
                 }
                 if($inactive) {
                     $disabled = "disabled='disabled'";   
@@ -23,7 +33,7 @@
                 // Input square
                 $coord = $parentCellNumber . $key;
                 print("<input name='gameboard' type='radio' id='" . $coord . "' " . $disabled . ">");
-                print("<label for='" . $coord . "'" . $playerClass . "></label>");
+                print("<label for='" . $coord . "'" . $labelClass . "></label>");
                 
                 if ($key === 2 || $key === 5 || $key === 8) {
                     // Close small row
@@ -37,7 +47,10 @@
             foreach($board->getCells() as $key => $value) {
                 
                 $inactive = "";
-                if(!$value->getActiveState()) {
+                if ($value->hasWinner()){
+                    $inactive = " hasWinner" . $value->getWinner();
+                }
+                else if(!$value->getActiveState()) {
                     $inactive = " inactive";    
                 } 
                 
