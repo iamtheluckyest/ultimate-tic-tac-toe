@@ -16,6 +16,7 @@ class LargeBoardModel extends BoardModel {
         }
         $wholeBoard["gameInProgress"] = $this->active;
         $wholeBoard["player"] = $this->currentPlayer;
+        $wholeBoard["totalWinner"] = $this->getWinner();
         return $wholeBoard;
     }
     
@@ -29,11 +30,12 @@ class LargeBoardModel extends BoardModel {
             $cellStateSetSuccess = $currentSmallBoard->setCellState($coord[1]);
             // If cell is successfully set, check for win on small board
             if ($cellStateSetSuccess){
-                $smallBoardWon = $currentSmallBoard->checkForWin($coord[1]);
+                $smallBoardWinner = $currentSmallBoard->checkForWin($coord[1], $this->currentPlayer);
                 // If a small board has been won, check for win on large board
-                if ($smallBoardWon) {
+                if ($smallBoardWinner === 0 || $smallBoardWon === 1) {
                     // Check for whole board win
-                    $largeBoardWon = $this->checkForWin($coord[0]);
+                    // TODO: Some kind of error causes wins on the large board when they don't exist -> i.e. when opposite player wins due to full board
+                    $largeBoardWon = $this->checkForWin($coord[0], $smallBoardWinner);
                     // If won, end game.
                     if($largeBoardWon) {
                         $this->setActiveState(false);

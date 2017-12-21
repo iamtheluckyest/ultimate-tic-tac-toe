@@ -1,7 +1,8 @@
 <?php
     
-    function printBoard($board, $parentCellNumber, $inactive = "") {
+    function printBoard($board, $parentCellNumber = "", $inactive = "") {
         $p1Turn = "";
+        // print(json_encode($board->getWholeBoard()));
         if($board->getCurrentPlayer()) {
             $turnClass = "class='p1-turn'";
         }
@@ -13,16 +14,13 @@
                 $disabled = "";
                 $playerClass = "";
                 
-                // TODO: add something to recognize the player's turn and add class "p1-turn" to label if it is p1's turn
                 if ($value === 0 || $value === 1){
-                    // TODO: Need to add a player class if there is a value
-                    // Problem: class already exists in $turnClass
-                    // but if we manipulate $turnClass, it will stay manipulated next time through the loop
                     $labelClass = "class='p" . $value . "'";
                 } else {
                     $labelClass = $turnClass;
                 }
-                if($inactive) {
+                
+                if ($inactive) {
                     $disabled = "disabled='disabled'";   
                 }
                 
@@ -50,9 +48,9 @@
                 if ($value->hasWinner()){
                     $inactive = " hasWinner" . $value->getWinner();
                 }
-                else if(!$value->getActiveState()) {
+                else if ($board->hasWinner() || !$value->getActiveState()) {
                     $inactive = " inactive";    
-                } 
+                }
                 
                 if ($key === 0 || $key === 3 || $key === 6) {
                     // New large row

@@ -60,10 +60,10 @@ class BoardModel {
         throw new Exception("setCellState called in abstract base class");
     }
     
-    protected function checkforWin($coord) {
+    protected function checkforWin($coord, $player) {
         // if a 3-in-a-row row, col, or diagonal has been achieved, assign winner
-        if ($this->winConditions[$this->currentPlayer]->checkforWin($coord)) {
-            return $this->assignWinner($this->currentPlayer);
+        if ($this->winConditions[$player]->checkforWin($coord, $player)) {
+            return $this->assignWinner($player);
         }
         // if the board has no cells left, assign winner
         else if ( ($this->winConditions[0]->getTotal() + $this->winConditions[1]->getTotal()) === sizeof($this->cells) ) {
@@ -82,7 +82,7 @@ class BoardModel {
     protected function assignWinner($player) {
         $this->winner = $player;
         $this->active = false;
-        return true;
+        return $player;
     }
     
     private function generateCells() {

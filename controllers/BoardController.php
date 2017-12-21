@@ -16,10 +16,14 @@
             if ($success) {
                 $gameBoard->togglePlayer();
                 $_SESSION["gameBoard"] = $gameBoard;
+               
                 // For sending back html code
-                return printBoard($gameBoard, "");
+                // printBoard($gameBoard);
+                
                 // For sending back just data
-                // return json_encode($gameBoard->getWholeBoard());
+                return json_encode($gameBoard->getWholeBoard());
+                
+                // For sending back both would need to print_r("", true) everthing in printBoard, then concatonate and return
             } else {
                 return null;
             }

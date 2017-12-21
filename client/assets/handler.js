@@ -21,6 +21,7 @@ $(document).on("click", "input", function(event){
             /*---------------------------------------------------
             For the version that sends back html
             ---------------------------------------------------*/
+            // console.log(res)
             if (res) {
                 // console.log(JSON.parse(res));
                 // console.log(res)

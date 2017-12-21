@@ -24,7 +24,7 @@
             </center>
             <form action="#">
                 <?php
-                    printBoard($gameBoard, "");
+                    printBoard($gameBoard);
                 ?>
             </form>
         </div>
