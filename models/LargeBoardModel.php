@@ -8,7 +8,7 @@ class LargeBoardModel extends BoardModel {
     public function getWholeBoard() {
         $wholeBoard = array();
         foreach($this->getCells() as $key => $value) {
-            $wholeBoard[$key] = array(
+            $wholeBoard["cells"][$key] = array(
                 "content" => $value->getCells(), 
                 "active" => $value->getActiveState(),
                 "winner" => $value->getWinner(),

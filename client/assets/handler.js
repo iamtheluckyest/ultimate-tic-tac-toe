@@ -1,6 +1,14 @@
 /* global $ */
 
 var click;
+// $(document).on("ready", function() {
+//     $.get("boardData")
+//     .then(function(res){
+        
+//     })
+// }
+
+
 
 $(document).on("click", "input", function(event){
     // Ids of inputs equal their coordinates. First number is large cell array index, second number is small cell array index.
@@ -22,55 +30,46 @@ $(document).on("click", "input", function(event){
             For the version that sends back html
             ---------------------------------------------------*/
             // console.log(res)
-            if (res) {
-                // console.log(JSON.parse(res));
-                // console.log(res)
-                $("form").html(res);
+            // if (res) {
+            //     // console.log(JSON.parse(res));
+            //     // console.log(res)
+            //     $("form").html(res);
                 
-            } else {
-                console.log(res);
-                console.log("select a different cell");
-            }
+            // } else {
+            //     console.log(res);
+            //     console.log("select a different cell");
+            // }
             
             /*---------------------------------------------------
             For the version that sends back data
             ---------------------------------------------------*/
-            /*
-            console.log(res)
+            
             // If response is successful, swap player, update button class
             if (res) {
-                // console.log(res)
-                console.log(JSON.parse(res));
-                $("label[for='" + coord + "'], #" + coord).addClass("p" + currentPlayer);
-                res = JSON.parse(res)
-                // Disable radio button
-                $(res).each(function(index, value){
-                    if (res[index].active === true) {
-                        // Toggle disabled to true for anything with id starting with index (coord of large cell)
-                        $("input[id^="+ index +"]:not(.p0), input[id^="+ index +"]:not(.p1)").removeAttr("disabled");
-                        $("#cell" + index).removeClass("inactive")
-                    } else {
-                        // Toggle disabled to false for anything with id starting with index (coord of large cell), unless cell has state
-                        $("input[id^="+ index +"]").attr("disabled", "disabled");
-                        $("#cell" + index).addClass("inactive")
-                    }
-                });
-                $("label").toggleClass("p1-turn")
-                if(!currentPlayer) {
-                    currentPlayer = 1;
-                } else {
-                    currentPlayer = 0;
-                }
+                res = JSON.parse(res);
+                console.log(res);
                 
+                // Color the cell that was just clicked.
+                $("label[for='" + coord + "'], #" + coord).addClass("p" + (res.player ? "0" : "1") )
+                
+                // Remove border on "checked" property that comes from Materialize
+                $("#" + coord).prop("checked", false);
+                // Want to turn off animation on before/after, but can't target with jQuery
+                // $("#" + coord + ":before", "#" + coord + ":after").css("transition", "")
+                
+                drawActiveCells(res);
+                
+                // If player 1's turn, add class. Otherwise remove class.
+                $("label").toggleClass("p1-turn")
                 
             } 
             // If response fails
             // This is only a safeguard as disabling the input will not allow you to change a cell that's already been clicked.
             else {
                 console.log(res)
-                console.log("cell has been chosen already");
+                console.log("cell has been chosen already or the game is over");
             }
-            */
+            
             
         });
     }
@@ -86,3 +85,23 @@ $(".btn").click(function(event){
         window.location.reload();
     });
 })
+
+function drawActiveCells(board){
+    // Disable/enable inactive/active boards
+    $(board.cells).each(function(index, value) {
+        var hasWinner = ""
+        if(value.winner !== null) {
+            hasWinner = "hasWinner" + value.winner;
+        }
+        
+        if (value.active === true) {
+            // Toggle disabled off for anything with id starting with key (coord of large cell)
+            $("input[id^="+ index +"]:not(.p0), input[id^="+ index +"]:not(.p1)").removeAttr("disabled");
+            $("#cell" + index).removeClass("inactive")
+        } else {
+            // Toggle disabled on for anything with id starting with key (coord of large cell), unless cell has state
+            $("input[id^="+ index +"]").attr("disabled", "disabled");
+            $("#cell" + index).addClass("inactive " + hasWinner)
+        }
+    });
+}
