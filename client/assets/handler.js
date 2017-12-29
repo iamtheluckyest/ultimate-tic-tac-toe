@@ -1,12 +1,27 @@
 /* global $ */
 
 var click;
-// $(document).on("ready", function() {
-//     $.get("boardData")
-//     .then(function(res){
+
+$(document).ready(function() {
+    $.get("/board", function(res){
+        res = JSON.parse(res);
+        console.log(res)
         
-//     })
-// }
+        if (res.player === 1) {
+            $("label").toggleClass("p1-turn")
+        }
+        
+        drawActiveCells(res);
+        
+        $(res.cells).each(function(coord1, value){
+            $(value.content).each(function(coord2, val){
+                if (val === 0 || val === 1) {
+                    $("label[for='" + coord1 + coord2 + "'], #" + coord1 + coord2).addClass("p" + val )
+                }
+            })
+        })
+    })
+});
 
 
 
@@ -20,29 +35,12 @@ $(document).on("click", "input", function(event){
     } else {
         $.ajax({
             method: "POST" ,
-            url: "board",
+            url: "/board",
             contentType: 'application/json',
             data: JSON.stringify({
                 "coord": coord
             })
         }).then(function(res){
-            /*---------------------------------------------------
-            For the version that sends back html
-            ---------------------------------------------------*/
-            // console.log(res)
-            // if (res) {
-            //     // console.log(JSON.parse(res));
-            //     // console.log(res)
-            //     $("form").html(res);
-                
-            // } else {
-            //     console.log(res);
-            //     console.log("select a different cell");
-            // }
-            
-            /*---------------------------------------------------
-            For the version that sends back data
-            ---------------------------------------------------*/
             
             // If response is successful, swap player, update button class
             if (res) {
@@ -54,9 +52,7 @@ $(document).on("click", "input", function(event){
                 
                 // Remove border on "checked" property that comes from Materialize
                 $("#" + coord).prop("checked", false);
-                // Want to turn off animation on before/after, but can't target with jQuery
-                // $("#" + coord + ":before", "#" + coord + ":after").css("transition", "")
-                
+
                 drawActiveCells(res);
                 
                 // If player 1's turn, add class. Otherwise remove class.

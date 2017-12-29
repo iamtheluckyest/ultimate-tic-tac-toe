@@ -1,6 +1,6 @@
 <?php
 
-    class BoardView {
+    class IndexView {
         private $data = array();
         
         private $render = FALSE;
